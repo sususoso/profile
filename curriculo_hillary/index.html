@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo - Hillary</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #0a0f1d;
+            margin: 0;
+            color: #e2e8f0;
+            background-image: radial-gradient(circle at top right, rgba(0, 245, 212, 0.05), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(30, 58, 138, 0.2), transparent 50%);
+            background-attachment: fixed;
+        }
+
+        header {
+            background-color: rgba(20, 30, 55, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            color: white;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 245, 212, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-decoration: none;
+            color: #fff !important;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #00f5d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.6;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: #00f5d4 !important;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+            color: #00f5d4 !important;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00f5d4;
+            box-shadow: 0 0 8px #00f5d4;
+            border-radius: 2px;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+        }
+
+        .aside-card {
+            background: rgba(28, 37, 65, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2rem 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.2rem;
+            border: 1px solid rgba(0, 245, 212, 0.5);
+            box-shadow: 0 0 25px rgba(0, 245, 212, 0.25), 
+                        inset 0 0 10px rgba(0, 245, 212, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .aside-card:hover .profile-img {
+            border-color: #00f5d4;
+            box-shadow: 0 0 35px rgba(0, 245, 212, 0.45);
+            transform: scale(1.02);
+        }
+
+        .text-muted {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .skills-card {
+            background: rgba(28, 37, 65, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-group-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #00f5d4;
+            margin: 2rem 0 0.75rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(0, 245, 212, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skills-group-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .skill-item-container {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .skill-item-container:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.9rem 0;
+            font-size: 1rem;
+            cursor: pointer;
+            user-select: none;
+            color: #cbd5e1;
+            transition: color 0.2s ease, padding 0.2s ease;
+        }
+
+        .skill-item:hover {
+            color: #ffffff;
+            padding-left: 4px;
+        }
+
+        .arrow {
+            color: #475569;
+            font-size: 0.75rem;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .skill-wrapper {
+            display: none;
+        }
+
+        .skill-desc {
+            color: #94a3b8;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            padding-bottom: 0.9rem;
+        }
+
+        .skill-item-container.active {
+            border-bottom-color: rgba(0, 245, 212, 0.3);
+            background: rgba(0, 245, 212, 0.02);
+            padding: 0 8px;
+            border-radius: 6px;
+        }
+
+        .skill-item-container.active .skill-item {
+            color: #00f5d4;
+            font-weight: 600;
+        }
+
+        .skill-item-container.active .arrow {
+            transform: rotate(90deg);
+            color: #00f5d4;
+        }
+
+        .skill-item-container.active .skill-wrapper {
+            display: block;
+        }
+
+        .fw-bold {
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: rgba(0, 245, 212, 0.03);
+            color: #00f5d4;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .btn-primary:hover {
+            background: #00f5d4;
+            color: #0a0f1d;
+            border-color: #00f5d4;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 800px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 1.5rem auto;
+            }
+            .skills-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a class="nav-brand" href="index.html">Portfólio</a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="portfolio.html">Portfólio</a>
+                <a href="contatos.html">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <aside class="aside-card">
+            <img class="profile-img" src="foto-perfil.png" alt="Minha Foto">
+            <h2 class="fw-bold" style="margin: 0 0 0.25rem 0; color: #fff; font-size: 1.6rem; letter-spacing: 0.5px;">Hillary</h2>
+            <p class="text-muted">UI/UX Designer & Dev Front-End</p>
+            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.05); margin: 1.2rem 0;">
+
+            <h3 style="text-align: left; font-size: 1.05rem; margin: 0 0 0.6rem 0; color: #00f5d4; text-transform: uppercase; letter-spacing: 0.5px;">Sobre mim</h3>
+            <p style="text-align: left; color: #94a3b8; font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.8rem; font-weight: 400;">
+                Sou apaixonada por design, estética visual e ideias criativas. Busco unir a arte da concepção visual com códigos limpos para estruturar interfaces incríveis e fora da curva.
+            </p>
+            <a href="portfolio.html" class="btn-primary">Ver Perfil</a>
+        </aside>
+
+        <section class="skills-card">
+            <h3 class="fw-bold" style="margin: 0 0 1.5rem 0; font-size: 1.6rem; color: #fff; letter-spacing: -0.5px;">Habilidades</h3>
+
+            <div class="skills-group-title">Hard Skills</div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>HTML5 e CSS3 (Minha Especialidade)</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Minha principal linguagem. Domínio completo em construir layouts modernos, arquiteturas semânticas robustas, estilizações complexas and animações fluidas focadas no usuário.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Design & Ideias Criativas</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Direção de arte conceitual, facilidade com paletas cromáticas harmônicas, foco total na experiência e usabilidade visual (UI/UX) e soluções inovadoras para problemas de interface.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Bootstrap 5 Framework</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Desenvolvimento ágil e estruturado de interfaces totalmente responsivas utilizando ecossistemas e grids inteligentes.</div>
+                </div>
+            </div>
+
+            <div class="skills-group-title">Soft Skills</div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Inteligência Emocional</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Capacidade analítica para reconhecer, compreender e gerenciar minhas próprias emoções e as do time, mantendo o ambiente de trabalho saudável sob qualquer contexto.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Empatia</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Habilidade natural de me colocar no papel do usuário e dos colegas de equipe para desenhar soluções digitais inclusivas, assertivas e humanas.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Comunicação Assertiva</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Facilidade em expor pensamentos e feedbacks de forma clara, objetiva e transparente, sem ruídos, preservando o respeito mútuo.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Escuta Ativa</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Absorção focada e sem pré-julgamentos de briefings, orientações e feedbacks, garantindo que os requisitos do projeto sejam executados com perfeição.</div>
+                </div>
+            </div>
+
+            <div class="skill-item-container">
+                <div class="skill-item">
+                    <span>Resiliência</span>
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="skill-wrapper">
+                    <div class="skill-desc">Excelente adaptabilidade frente a novos desafios de escopo ou problemas técnicos inesperados, transformando adversidades em aprendizado contínuo.</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.querySelectorAll('.skill-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const container = item.parentElement;
+                container.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

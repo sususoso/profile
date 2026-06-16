@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Hillary</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #0a0f1d;
+            margin: 0;
+            color: #e2e8f0;
+            background-image: radial-gradient(circle at top right, rgba(0, 245, 212, 0.05), transparent 40%),
+                              radial-gradient(circle at bottom left, rgba(30, 58, 138, 0.2), transparent 50%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(20, 30, 55, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.2rem 0;
+            color: white;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 245, 212, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-decoration: none;
+            color: #fff !important;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #00f5d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff !important;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.6;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            color: #00f5d4 !important;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+            color: #00f5d4 !important;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #00f5d4;
+            box-shadow: 0 0 8px #00f5d4;
+            border-radius: 2px;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        /* CARD DA ESQUERDA (Redes Sociais) */
+        .aside-card {
+            background: rgba(28, 37, 65, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            height: fit-content;
+        }
+
+        /* CARD DA DIREITA (Formulário) */
+        .form-card {
+            background: rgba(28, 37, 65, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .fw-bold {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .text-muted {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* LINKS DE CONTATO DIRETO */
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link-item:hover {
+            color: #00f5d4;
+            border-color: rgba(0, 245, 212, 0.3);
+            background: rgba(0, 245, 212, 0.02);
+            transform: translateX(4px);
+        }
+
+        .contact-link-item svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ESTILIZAÇÃO DO FORMULÁRIO */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00f5d4;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(10, 15, 29, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.8rem 1rem;
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #00f5d4;
+            box-shadow: 0 0 10px rgba(0, 245, 212, 0.15);
+            background: rgba(10, 15, 29, 0.8);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* BOTÃO ENVIAR CYBER-GLASS */
+        .btn-submit {
+            display: inline-block;
+            background: rgba(0, 245, 212, 0.03);
+            color: #00f5d4;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .btn-submit:hover {
+            background: #00f5d4;
+            color: #0a0f1d;
+            border-color: #00f5d4;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.4);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: transparent;
+            color: #64748b;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                margin: 1.5rem auto;
+                gap: 1.5rem;
+            }
+            .aside-card, .form-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a class="nav-brand" href="index.html">Portfólio</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="portfolio.html">Portfólio</a>
+                <a href="contatos.html" class="active">Contato</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <aside class="aside-card">
+            <h3 class="fw-bold" style="margin: 0 0 0.5rem 0; font-size: 1.6rem; letter-spacing: -0.5px;">Vamos conversar?</h3>
+            <p class="text-muted" style="margin-bottom: 2rem;">Sinta-se à vontade para me mandar uma mensagem ou me acompanhar nas redes sociais!</p>
+            
+            <a href="mailto:seu-email@email.com" class="contact-link-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>seu-email@email.com</span>
+            </a>
+
+            <a href="https://linkedin.com/in/seu-usuario" target="_blank" class="contact-link-item">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                <span>LinkedIn /hillary</span>
+            </a>
+
+            <a href="https://github.com/seu-usuario" target="_blank" class="contact-link-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+                <span>GitHub /hillary</span>
+            </a>
+        </aside>
+
+        <section class="form-card">
+            <h3 class="fw-bold" style="margin: 0 0 1.5rem 0; font-size: 1.6rem; letter-spacing: -0.5px;">Enviar Mensagem</h3>
+            
+            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" class="form-control" placeholder="Seu nome completo" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" class="form-control" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" class="form-control" placeholder="Escreva sua ideia ou proposta aqui..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Email</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <div style="font-size: 0.85rem;">
+            © 2026 Hillary - Portfólio de Design e Desenvolvimento Web.
+        </div>
+    </footer>
+
+</body>
+
+</html>
